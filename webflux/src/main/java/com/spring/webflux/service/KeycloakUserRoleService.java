@@ -20,10 +20,10 @@ public class KeycloakUserRoleService {
 
     // Keycloak config — better to move these to application.properties later
     private final String serverUrl = "http://localhost:8080";
-    private final String realm = "master";
+    private final String realm = "apwrd";
     private final String clientId = "admin-cli";
-    private static final String ADMIN_USERNAME = "admin";
-    private static final String ADMIN_PASSWORD = "admin";
+    private static final String ADMIN_USERNAME = "barryallen234";
+    private static final String ADMIN_PASSWORD = "barryallen234";
 
     private Keycloak getKeycloakAdminClient() {
         return KeycloakBuilder.builder()
