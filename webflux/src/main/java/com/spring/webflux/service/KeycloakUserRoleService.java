@@ -7,6 +7,7 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,11 +20,16 @@ import java.util.List;
 public class KeycloakUserRoleService {
 
     // Keycloak config — better to move these to application.properties later
-    private final String serverUrl = "http://localhost:8080";
-    private final String realm = "apwrd";
-    private final String clientId = "admin-cli";
-    private static final String ADMIN_USERNAME = "barryallen234";
-    private static final String ADMIN_PASSWORD = "barryallen234";
+    @Value("${keycloak.server-url}")
+    private  String serverUrl ;
+    @Value("${keycloak.realm}")
+    private  String realm ;
+    @Value("${keycloak.client-id}")
+    private  String clientId ;
+    @Value("${keycloak.username}")
+    private   String ADMIN_USERNAME;
+    @Value("${keycloak.password}")
+    private   String ADMIN_PASSWORD ;
 
     private Keycloak getKeycloakAdminClient() {
         return KeycloakBuilder.builder()
