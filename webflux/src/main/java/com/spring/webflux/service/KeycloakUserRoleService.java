@@ -30,12 +30,15 @@ public class KeycloakUserRoleService {
     private   String ADMIN_USERNAME;
     @Value("${keycloak.password}")
     private   String ADMIN_PASSWORD ;
-
+    @Value("${keycloak.client-secret}")
+    private String clientSecret;
     private Keycloak getKeycloakAdminClient() {
         return KeycloakBuilder.builder()
                 .serverUrl(serverUrl)
                 .realm(realm)
-                .clientId(clientId)
+                .clientId(clientId).clientSecret(clientSecret)
+                .grantType("password") // or "client_credentials"
+                .scope("openid") // optional, can be added
                 .username(ADMIN_USERNAME)
                 .password(ADMIN_PASSWORD)
                 .build();
